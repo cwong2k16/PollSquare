@@ -10,7 +10,7 @@ nav li{
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
-nav li a{
+a{
     color: white;
     text-decoration: none;
 }
@@ -30,4 +30,8 @@ button{
     cursor: pointer;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.center{
+    text-align: center;
 }
