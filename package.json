@@ -1,0 +1,24 @@
+{
+  "name": "votingapp",
+  "version": "1.0.0",
+  "description": "full stack web app voting app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cwong2k16/votingapp.git"
+  },
+  "author": "Christopher Wong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwong2k16/votingapp/issues"
+  },
+  "homepage": "https://github.com/cwong2k16/votingapp#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "nodemon": "^1.14.7"
+  }
+}
