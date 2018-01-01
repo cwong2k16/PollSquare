@@ -14,3 +14,20 @@ nav li a{
     color: white;
     text-decoration: none;
 }
+
+h1{
+    font-family: Arial;
+    padding: 10px;
+    color: darkgrey;
+}
+
+button{
+    font-size: 25px;
+    width: 16%;
+    background-color: #F44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
