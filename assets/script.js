@@ -5,6 +5,6 @@ $(document).ready(function(){
     });
 
     $('#mainPoll').on('click', function(){
-        console.log()
-    })
+        $('#poll').append("<div><input class = 'textbox' type = 'text' name = 'otherOption' placeholder = 'Option...' /></input></div>")
+    });
 });
