@@ -1,5 +1,5 @@
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var keys = require('../config/keys');
 var User = require('../models/user-model');
 
@@ -19,14 +19,14 @@ passport.use(
     clientID: keys.keys.clientId,
     clientSecret: keys.keys.secretKey
     }, (accessToken, refreshToken, profile, done)=> {
-        User.findOne({googleId: profile.googleId}).then((currentUser)=>{
+        User.findOne({googleId: profile.id}).then((currentUser)=>{
             if(currentUser){
-                done(currentUser, null);
+                done(null, currentUser);
             }
             else{
                 new User({
                     username: profile.displayName,
-                    googleId: profile.googleId
+                    googleId: profile.id
                 }).save().then((newUser)=>{
                     done(null, newUser);
                 });

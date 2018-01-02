@@ -24,7 +24,7 @@ app.use('/auth', authRoute);
 app.use('/assets', express.static('./assets'));
 
 app.get('/', (req, res)=>{
-    res.render('home');
+    res.render('home.ejs', {user: req.user});
 });
 
 app.listen(3000, ()=>{
