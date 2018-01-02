@@ -5,6 +5,7 @@ var keys = require('./config/keys');
 var cookieSession = require('cookie-session');
 var passport = require('passport');
 var mongoose = require('mongoose');
+var profileRoute = require('./routes/profileRoute');
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -20,6 +21,7 @@ app.use(passport.session());
 mongoose.connect(keys.mongodb.dbURL);
 
 app.use('/auth', authRoute);
+app.use('/profile', profileRoute);
 
 app.use('/assets', express.static('./assets'));
 

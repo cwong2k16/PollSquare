@@ -2,7 +2,7 @@ var router = require('express').Router();
 var passport = require('passport');
 
 router.get('/login', (req, res)=>{
-    res.render('login');
+    res.render('login', {user: req.user});
 });
 
 router.get('/logout', (req, res)=>{
@@ -15,7 +15,7 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res)=>{
-    res.send("Welcome to your profile!");
+    res.redirect('/profile/');
 });
 
 module.exports = router;

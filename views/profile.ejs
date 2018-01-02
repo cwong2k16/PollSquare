@@ -4,11 +4,12 @@
         <title>
             Your Profile
         </title>
+        <link href = "/assets/style.css" rel = "stylesheet" text = "text/css"/>
     </head>
     <body>
         <% include nav.ejs %>
         <h1 class = 'center'>
-            Welcome to your profile
+            Welcome to your profile, <%= user.username %>!
         </h1>
         <div class = 'center'>
             Here is a collection of polls you've participated in:
