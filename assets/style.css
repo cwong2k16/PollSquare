@@ -35,3 +35,12 @@ button{
 .center{
     text-align: center;
 }
+
+div{
+    margin: 0px;
+    padding: 5px;
+}
+
+.textbox{
+    width: 33%;
+}

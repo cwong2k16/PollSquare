@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Create a Poll!
+        </title>
+        <link href = "/assets/style.css" rel = "stylesheet" text = "text/css"/>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="/assets/script.js"></script>
+    </head>
+    <body>
+        <% include nav.ejs %>
+        <h1 class = "center"> 
+            Create a new poll below!
+        </h1>
+        <div class = 'center'>
+            <form>
+                <div id = '#poll'>
+                <% include pollForm.ejs %>
+                </div>
+                <button id = "mainPoll" name = "add option" type = "reset"> Add option </button>
+                <button name = "submit" type = "submit"> Submit </button>
+            </form>
+        </div>
+    </body>
+</html>
