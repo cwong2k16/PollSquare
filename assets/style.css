@@ -21,7 +21,7 @@ h1{
     color: darkgrey;
 }
 
-button{
+button, #mainPoll{
     font-size: 25px;
     width: 16%;
     background-color: #F44336;
