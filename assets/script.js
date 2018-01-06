@@ -46,14 +46,15 @@ $(document).ready(function(){
         for(var i = 0; i < arr.length; i ++){
             var events = $._data(document.getElementById("option" + arr[i]), "events");
             var hasEvents = (events != null);
-            var ref, ref2;
+            var ref, ref2, ref3;
             if(!hasEvents){
                 ref = "option" + arr[i];
                 ref2 = "div" + arr[i];
+                ref3 = arr[i];
                 $("#" + ref).on('click', ()=>{
                     $('[name=' + ref + ']').remove();
                     $("#" + ref).remove();
-                    remove(arr, ref);
+                    remove(arr, ref3);
                     $("#" + ref2).remove();
                     btnNum--;
                 });
