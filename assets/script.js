@@ -33,16 +33,15 @@ $(document).ready(function(){
         btnNum--;
     });
 
-    $('form').on('submit', function(){
-        console.log('this will eventually submit this poll to datbase');
-    });
+    // $('form').on('submit', function(){
+
+    // });
 
     $('#mainPoll').on('click', function(){
         btnNum++;
         btnId++;
         $('#poll').append(split1 + btnId + split1b + btnId + split2 + split3 + btnId + split4);
         arr.push(btnId);
-        console.log(arr);
         for(var i = 0; i < arr.length; i ++){
             var events = $._data(document.getElementById("option" + arr[i]), "events");
             var hasEvents = (events != null);
