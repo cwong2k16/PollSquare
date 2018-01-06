@@ -12,26 +12,25 @@ $(document).ready(function(){
     var split3 = " <input type = 'button' id = 'option";
     var split4 = "' value = 'x'/></div>";
     var btnNum = 2;
+    var btnId = 2;
 
     var arr = [];
-    arr.push("option1", "option2");
+    arr.push(1, 2);
 
     $("#option1").on('click', ()=>{
         $('[name=option1]').remove();
         $("#option1").remove();
-        remove(arr, "option1");
+        remove(arr, 1);
         $("#div1").remove();
         btnNum--;
-        console.log(arr);
     });
 
     $("#option2").on('click', ()=>{
         $('[name=option2]').remove();
         $("#option2").remove();
-        remove(arr, "option2");
+        remove(arr, 2);
         $("#div2").remove();
         btnNum--;
-        console.log(arr);
     });
 
     $('form').on('submit', function(){
@@ -40,22 +39,23 @@ $(document).ready(function(){
 
     $('#mainPoll').on('click', function(){
         btnNum++;
-        $('#poll').append(split1 + btnNum + split1b + btnNum + split2 + split3 + btnNum + split4);
-        arr.push("option" + btnNum);
+        btnId++;
+        $('#poll').append(split1 + btnId + split1b + btnId + split2 + split3 + btnId + split4);
+        arr.push(btnId);
+        console.log(arr);
         for(var i = 0; i < arr.length; i ++){
-            var events = $._data(document.getElementById("option" + (i+1)), "events");
+            var events = $._data(document.getElementById("option" + arr[i]), "events");
             var hasEvents = (events != null);
             var ref, ref2;
             if(!hasEvents){
-                ref = "option" + (i+1);
-                ref2 = "div" + (i+1);
-                $("#" + arr[i]).on('click', ()=>{
+                ref = "option" + arr[i];
+                ref2 = "div" + arr[i];
+                $("#" + ref).on('click', ()=>{
                     $('[name=' + ref + ']').remove();
                     $("#" + ref).remove();
                     remove(arr, ref);
                     $("#" + ref2).remove();
                     btnNum--;
-                    console.log(arr);
                 });
             }
         }
