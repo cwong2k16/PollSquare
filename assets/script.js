@@ -18,24 +18,24 @@ $(document).ready(function(){
     arr.push(1, 2);
 
     $("#option1").on('click', ()=>{
-        $('[name=option1]').remove();
-        $("#option1").remove();
-        remove(arr, 1);
-        $("#div1").remove();
-        btnNum--;
+        if(btnNum > 2){
+            $('[name=option1]').remove();
+            $("#option1").remove();
+            remove(arr, 1);
+            $("#div1").remove();
+            btnNum--;
+        }
     });
 
     $("#option2").on('click', ()=>{
-        $('[name=option2]').remove();
-        $("#option2").remove();
-        remove(arr, 2);
-        $("#div2").remove();
-        btnNum--;
+        if(btnNum > 2){
+            $('[name=option2]').remove();
+            $("#option2").remove();
+            remove(arr, 2);
+            $("#div2").remove();
+            btnNum--;
+        }
     });
-
-    // $('form').on('submit', function(){
-
-    // });
 
     $('#mainPoll').on('click', function(){
         btnNum++;
@@ -51,11 +51,13 @@ $(document).ready(function(){
                 ref2 = "div" + arr[i];
                 ref3 = arr[i];
                 $("#" + ref).on('click', ()=>{
-                    $('[name=' + ref + ']').remove();
-                    $("#" + ref).remove();
-                    remove(arr, ref3);
-                    $("#" + ref2).remove();
-                    btnNum--;
+                    if(btnNum > 2){
+                        $('[name=' + ref + ']').remove();
+                        $("#" + ref).remove();
+                        remove(arr, ref3);
+                        $("#" + ref2).remove();
+                        btnNum--;
+                    }
                 });
             }
         }
