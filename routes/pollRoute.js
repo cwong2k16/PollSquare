@@ -16,10 +16,15 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.post('/', (req, res)=>{
-    res.send("Your post has been submitted. :D");
+    // res.send("Your post has been submitted. :D");
+    res.json(req.body);
     for (var key in req.body) {
-        console.log("Key: " + key);
-        console.log("Value: " + req.body[key]);
+        if(key === "title"){
+            console.log("Title of poll: " + req.body[key]);
+        }
+        else if (key !== "submit"){
+            console.log("Option: " + req.body[key]);
+        }
     }
 });
 module.exports = router;
