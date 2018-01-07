@@ -20,6 +20,8 @@ router.get('/', authCheck, (req, res) => {
 router.post('/', (req, res)=>{
     res.send("Your post has been submitted. :D");
     var poll = new Poll();
+    var obj = {};
+    poll['options'].push(obj);
     for (var key in req.body) {
         if(key === "title"){
             console.log("Title of poll: " + req.body[key]);
@@ -27,9 +29,7 @@ router.post('/', (req, res)=>{
         }
         else if (key !== "submit"){
             console.log("Option: " + req.body[key]);
-            var val = req.body[key];
-            var jsonObj = {option: val, votes: 0};
-            poll['options'].push(jsonObj);
+            poll['options'][0][req.body[key]] = 0;
         }
     }
     poll.save();
