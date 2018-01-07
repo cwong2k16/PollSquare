@@ -1,5 +1,7 @@
 const bodyParser = require('body-parser');
 const router = require('express').Router();
+var Poll = require('../models/poll-model');
+
 const authCheck = (req, res, next) => {
     if(!req.user){
         res.redirect('/auth/login');
@@ -16,15 +18,20 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.post('/', (req, res)=>{
-    // res.send("Your post has been submitted. :D");
-    res.json(req.body);
+    res.send("Your post has been submitted. :D");
+    var poll = new Poll();
     for (var key in req.body) {
         if(key === "title"){
             console.log("Title of poll: " + req.body[key]);
+            poll['title'] = req.body[key];
         }
         else if (key !== "submit"){
             console.log("Option: " + req.body[key]);
+            var val = req.body[key];
+            var jsonObj = {option: val, votes: 0};
+            poll['options'].push(jsonObj);
         }
     }
+    poll.save();
 });
 module.exports = router;
