@@ -15,7 +15,7 @@
             <h3> Polls: </h3>
             <% if(user){ %>
                 <% for(var i = 0; i < data.length; i++){ %>
-                    <p><%= data[i].title %> by <%= data[i].owner %></p>
+                    <p><%= data[i].title %> submitted by <%= data[i].owner %></p>
                 <% } %>
             <% } %>
         </div>

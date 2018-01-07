@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const router = require('express').Router();
 var Poll = require('../models/poll-model');
+var User = require('../models/user-model');
 
 const authCheck = (req, res, next) => {
     if(!req.user){
@@ -18,7 +19,6 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.post('/', (req, res)=>{
-    console.log(req.body.nom);
     res.send("Your post has been submitted. :D");
     var poll = new Poll();
     var obj = {};
@@ -26,6 +26,7 @@ router.post('/', (req, res)=>{
     poll['owner'] = req.user.username;
     poll['options'].push(obj);
     poll['voters'].push(obj2);
+
     for (var key in req.body) {
         if(key === "title"){
             // console.log("Title of poll: " + req.body[key]);
@@ -37,5 +38,20 @@ router.post('/', (req, res)=>{
         }
     }
     poll.save();
+
+    User.findOne({username: req.user.username}, function(err, data) {
+        if(!err) {
+            data.polls.push(poll['title']);
+            data.save(function(err) {
+                if(!err) {
+                    console.log("success");
+                }
+                else {
+                    console.log("error");
+                }
+            });
+        }
+    });
+
 });
 module.exports = router;

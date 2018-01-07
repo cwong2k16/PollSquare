@@ -13,6 +13,10 @@
         </h1>
         <div class = 'center'>
             Here is a collection of polls you've participated in:
+            <% for(var i = 0; i < data.polls.length; i++) { %>
+                <p> <%= data.polls[i] %> </p>
+            <% } %>
         </div>
+        
     </body>
 </html>
