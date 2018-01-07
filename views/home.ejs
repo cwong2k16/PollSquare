@@ -11,8 +11,13 @@
         <h1 class = 'center'> 
             Welcome to Voting App!
         </h1>
-        <h3> Polls: </h3>
-        <% if(user){ %>
-        <%=    data.owner  }%>
+        <div class = "center">
+            <h3> Polls: </h3>
+            <% if(user){ %>
+                <% for(var i = 0; i < data.length; i++){ %>
+                    <p><%= data[i].title %> by <%= data[i].owner %></p>
+                <% } %>
+            <% } %>
+        </div>
     </body>
 </html>
