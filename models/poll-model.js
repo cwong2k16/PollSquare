@@ -9,6 +9,7 @@ voters: Array // will be a json object like [{"bob":"superman", "alice":"saitama
 
 var mongoose = require('mongoose');
 var Schema = new mongoose.Schema({
+    owner: String,
     title: String,
     options: Array,
     voters: Array

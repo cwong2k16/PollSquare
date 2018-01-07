@@ -7,6 +7,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var profileRoute = require('./routes/profileRoute');
 var pollRoute = require('./routes/pollRoute');
+var polls = require('./models/poll-model.js');
 
 var app = express();
 app.set('view engine', 'ejs');
@@ -28,7 +29,11 @@ app.use('/poll', pollRoute);
 app.use('/assets', express.static('./assets'));
 
 app.get('/', (req, res)=>{
-    res.render('home.ejs', {user: req.user});
+    var data;
+    polls.find({}).then((data1)=>{
+        var data = data1;
+    });
+    res.render('home.ejs', {user: req.user, data: data});
 });
 
 app.listen(3000, ()=>{

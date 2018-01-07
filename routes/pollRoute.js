@@ -18,17 +18,21 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.post('/', (req, res)=>{
+    console.log(req.body.nom);
     res.send("Your post has been submitted. :D");
     var poll = new Poll();
     var obj = {};
+    var obj2 = {};
+    poll['owner'] = req.user.username;
     poll['options'].push(obj);
+    poll['voters'].push(obj2);
     for (var key in req.body) {
         if(key === "title"){
-            console.log("Title of poll: " + req.body[key]);
+            // console.log("Title of poll: " + req.body[key]);
             poll['title'] = req.body[key];
         }
         else if (key !== "submit"){
-            console.log("Option: " + req.body[key]);
+            // console.log("Option: " + req.body[key]);
             poll['options'][0][req.body[key]] = 0;
         }
     }
