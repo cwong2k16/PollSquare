@@ -23,6 +23,7 @@ router.post('/', (req, res)=>{
     var poll = new Poll();
     var obj = {};
     var obj2 = {};
+
     poll['owner'] = req.user.username;
     poll['options'].push(obj);
     poll['voters'].push(obj2);
@@ -31,6 +32,8 @@ router.post('/', (req, res)=>{
         if(key === "title"){
             // console.log("Title of poll: " + req.body[key]);
             poll['title'] = req.body[key];
+            var link = '/poll/' + req.body[key];
+            poll['link'] = link.replace(/\s+/g,"_");
         }
         else if (key !== "submit"){
             // console.log("Option: " + req.body[key]);
@@ -42,6 +45,9 @@ router.post('/', (req, res)=>{
     User.findOne({username: req.user.username}, function(err, data) {
         if(!err) {
             data.polls.push(poll['title']);
+            var link = '/poll/' + poll['title'];
+            link = link.replace(/\s+/g,"_");
+            data.links.push(link);
             data.save(function(err) {
                 if(!err) {
                     console.log("success");

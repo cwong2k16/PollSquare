@@ -15,7 +15,12 @@
             <h3> Polls: </h3>
             <% if(user){ %>
                 <% for(var i = 0; i < data.length; i++){ %>
-                    <p><%= data[i].title %> submitted by <%= data[i].owner %></p>
+                    <p>
+                        <a style = "color:blueviolet" href = <%=data[i].link%>>
+                            <%= data[i].title %> 
+                        </a>
+                        submitted by <%= data[i].owner %>
+                    </p>
                 <% } %>
             <% } %>
         </div>

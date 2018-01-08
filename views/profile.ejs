@@ -14,7 +14,11 @@
         <div class = 'center'>
             Here is a collection of polls you've participated in:
             <% for(var i = 0; i < data.polls.length; i++) { %>
-                <p> <%= data.polls[i] %> </p>
+                <p> 
+                    <a style = "color:black" href = <%= data.links[i] %>/>
+                        <%= data.polls[i] %>
+                    </a>
+                </p>
             <% } %>
         </div>
         

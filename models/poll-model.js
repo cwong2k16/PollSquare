@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 var Schema = new mongoose.Schema({
     owner: String,
     title: String,
+    link: String,
     options: Array,
     voters: Array
 });
