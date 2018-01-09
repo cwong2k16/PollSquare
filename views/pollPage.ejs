@@ -9,4 +9,14 @@
     <body>
         <% include nav.ejs %>
     </body>
+    <div class = "center">
+        <div>
+            <h1><%= data.title %></h1> submitted by <%= data.owner %>!
+        </div>
+        <div>
+            <% for (var key in data.options[0]) { %>
+                <p><input name = "option" type = "radio"> <%= key %> </input></p>
+            <% } %>
+        </div>
+    </div>
 </html>
