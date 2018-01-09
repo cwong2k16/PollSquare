@@ -30,6 +30,10 @@ router.get('/:poll*', (req, res)=>{
     });
 });
 
+router.post('/:poll*', (req, res)=>{
+    res.send("Your input has been submitted.");
+});
+
 router.post('/', (req, res)=>{
     res.send("Your post has been submitted. :D");
     var poll = new Poll();

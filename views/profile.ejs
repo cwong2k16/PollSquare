@@ -15,12 +15,11 @@
             Here is a collection of polls you've participated in:
             <% for(var i = 0; i < data.polls.length; i++) { %>
                 <p> 
-                    <a style = "color:black" href = <%= data.links[i] %>/>
+                    <a style = "color:black" href = <%= data.links[i] %>>
                         <%= data.polls[i] %>
                     </a>
                 </p>
             <% } %>
         </div>
-        
     </body>
 </html>

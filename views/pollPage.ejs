@@ -9,14 +9,19 @@
     <body>
         <% include nav.ejs %>
     </body>
-    <div class = "center">
-        <div>
-            <h1><%= data.title %></h1> submitted by <%= data.owner %>!
-        </div>
-        <div>
+    <form method = "post" class = "center">
+        <h1><%= data.title %></h1> 
+        <h2>submitted by <%= data.owner %></h2>
+        <table align = "center">
             <% for (var key in data.options[0]) { %>
-                <p><input name = "option" type = "radio"> <%= key %> </input></p>
+                <tr align = "left">
+                    <td><input type="radio" name="opt"></td>
+                    <td><%=key%></td>
+                </tr>
             <% } %>
-        </div>
-    </div>
+        </table>
+        <br/>
+        <button class = "viewPoll" name = "submit" type = "submit"> Submit </button>
+        <input id = "viewPoll" type = "button" value = "View Poll"> </button>
+    </form>
 </html>
