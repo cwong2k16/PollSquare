@@ -18,6 +18,18 @@ router.get('/', authCheck, (req, res) => {
     res.render('poll', {user: req.user});
 });
 
+router.get('/:poll*', (req, res)=>{
+    var url = '/poll' + req.url;
+    Poll.findOne({link: url}, (err, data)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            res.render('pollPage', {data: data, user: req.user});
+        }
+    });
+});
+
 router.post('/', (req, res)=>{
     res.send("Your post has been submitted. :D");
     var poll = new Poll();
