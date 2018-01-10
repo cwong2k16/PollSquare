@@ -39,7 +39,48 @@ router.get('/:poll*', (req, res)=>{
 });
 
 router.post('/:poll*', (req, res)=>{
-    res.send("Your input has been submitted.");
+    var url = '/poll' + req.url;
+    Poll.findOne({link: url}, (err, data)=>{
+        // if(err){
+        //     throw err;
+        // }
+        // else{ 
+        //     var theKey;
+        //     for(var key in req.body){
+        //         if(key === 'opt'){
+        //             theKey = req.body[key];
+        //         }
+        //     }
+        //     var voteCount;
+        //     if(data.voters[0] == null){
+        //         data.voters[0] = {};
+        //         data.voters[0][req.user.username] = theKey;
+        //         data.options[0][theKey] = data.options[0][theKey] + 1;
+        //     }
+        //     else{
+        //         if(data.voters[0][req.user.username] != theKey){
+        //             var previous = data.voters[0][req.user.username];
+        //             data.voters[0][req.user.username] = theKey;
+        //             data.options[0][theKey] = data.options[0][theKey] + 1;
+        //             if(previous){
+        //                 data.options[0][previous] = data.options[0][previous] - 1;
+        //             }
+        //         }
+        //     }
+            if(!err){
+            data.voters[0] = {};
+            data.voters[0]['hello'] = 'world';
+            data.save(function(err){
+                if(!err){
+                    console.log('saved');
+                }
+                else{
+                    console.log('error');
+                }
+            });
+        }
+        res.send("Your input has been submitted.");
+    });
 });
 
 router.post('/', (req, res)=>{

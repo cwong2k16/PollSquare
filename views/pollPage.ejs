@@ -14,7 +14,7 @@
             <table align = "center">
                 <% for (var key in data.options[0]) { %>
                     <tr align = "left">
-                        <td><input type="radio" name="opt"></td>
+                        <td><input type="radio" name = 'opt' value = <%= key %>></td>
                         <td><%=key%></td>
                     </tr>
                 <% } %>
