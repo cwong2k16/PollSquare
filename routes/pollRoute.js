@@ -2,6 +2,9 @@ const bodyParser = require('body-parser');
 const router = require('express').Router();
 var Poll = require('../models/poll-model');
 var User = require('../models/user-model');
+var fs = require('fs');
+// var Chart = require('chart');
+var theLink;
 
 const authCheck = (req, res, next) => {
     if(!req.user){
@@ -19,15 +22,20 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.get('/:poll*', (req, res)=>{
-    var url = '/poll' + req.url;
-    Poll.findOne({link: url}, (err, data)=>{
-        if(err){
-            throw err;
-        }
-        else{
-            res.render('pollPage', {data: data, user: req.user});
-        }
-    });
+    if(!req.user){
+        res.render('login', {user: req.user});
+    }
+    else{
+        var url = '/poll' + req.url;
+        Poll.findOne({link: url}, (err, data)=>{
+            if(err){
+                throw err;
+            }
+            else{
+                res.render('pollPage', {data: data, user: req.user});
+            }
+        });
+    }
 });
 
 router.post('/:poll*', (req, res)=>{
@@ -49,21 +57,29 @@ router.post('/', (req, res)=>{
             // console.log("Title of poll: " + req.body[key]);
             poll['title'] = req.body[key];
             var link = '/poll/' + req.body[key];
-            poll['link'] = link.replace(/\s+/g,"_");
+            var readStream = fs.createReadStream(__dirname + '/id.txt', 'binary');
+            readStream.on('data', function(chunk){  
+                chunk = parseInt(chunk)+1;
+                chunk = chunk.toString();
+                link = link.replace(/\s+/g,"_");
+                link += "/id" + chunk;
+                theLink = link;
+                var writeStream = fs.createWriteStream(__dirname + '/id.txt');
+                writeStream.write(chunk);
+             });
         }
         else if (key !== "submit"){
             // console.log("Option: " + req.body[key]);
             poll['options'][0][req.body[key]] = 0;
         }
     }
-    poll.save();
 
     User.findOne({username: req.user.username}, function(err, data) {
         if(!err) {
             data.polls.push(poll['title']);
-            var link = '/poll/' + poll['title'];
-            link = link.replace(/\s+/g,"_");
-            data.links.push(link);
+            data.links.push(theLink);
+            poll['link'] = link;
+            poll.save();
             data.save(function(err) {
                 if(!err) {
                     console.log("success");
@@ -74,6 +90,5 @@ router.post('/', (req, res)=>{
             });
         }
     });
-
 });
 module.exports = router;
