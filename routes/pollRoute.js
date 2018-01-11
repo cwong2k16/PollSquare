@@ -81,10 +81,10 @@ router.post('/:poll*', (req, res)=>{
         data.save(function(err){
             if(!err){
                 console.log('saved');
+                res.send("Your input has been submitted.");
             }
             else{
                 console.log('error');
-                res.send("Your input has been submitted.");
             }
         });
     });
