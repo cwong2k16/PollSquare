@@ -3,7 +3,6 @@ const router = require('express').Router();
 var Poll = require('../models/poll-model');
 var User = require('../models/user-model');
 var fs = require('fs');
-// var Chart = require('chart');
 var theLink;
 
 const authCheck = (req, res, next) => {
