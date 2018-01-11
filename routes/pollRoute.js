@@ -21,19 +21,24 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.get('/:poll*', (req, res)=>{
-    if(!req.user){
-        res.render('login', {user: req.user});
+    if(req.url === '/viewResults'){
+        res.render('viewResults');
     }
     else{
-        var url = '/poll' + req.url;
-        Poll.findOne({link: url}, (err, data)=>{
-            if(err){
-                throw err;
-            }
-            else{
-                res.render('pollPage', {data: data, user: req.user});
-            }
-        });
+        if(!req.user){
+            res.render('login', {user: req.user});
+        }
+        else{
+            var url = '/poll' + req.url;
+            Poll.findOne({link: url}, (err, data)=>{
+                if(err){
+                    throw err;
+                }
+                else{
+                    res.render('pollPage', {data: data, user: req.user});
+                }
+            });
+        }
     }
 });
 

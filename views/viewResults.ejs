@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Poll Results
+        </title>
+        <script src = '/assets/Chart.js'></script>
+        <script src="/assets/randomRgb.js"></script>
+    </head>
+    <body>
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </body>
+    <script>
+        var ctx = document.getElementById("myChart");
+            var chart = new Chart(ctx,{
+                "type":"pie",
+                "data":{
+                "labels":["Red","Blue","Yellow"],
+                "datasets":[{"label":"My First Dataset","data":[1,50,100],"backgroundColor":[random_rgb(),random_rgb(),random_rgb()]}]
+                }
+            });
+    </script>
+</html>
