@@ -71,6 +71,9 @@ router.post('/:poll*', (req, res)=>{
         if(err){
             throw err;
         }
+        if(!data){
+            res.send("Does not exist");
+        }
         else{ 
             var theKey;
             for(var key in req.body){
@@ -82,7 +85,7 @@ router.post('/:poll*', (req, res)=>{
             if(data.voters[0] == null){
                 data.voters = [];
                 var obj  = {};
-                obj[req.user.username] = theKey;
+                obj[req.user.id] = theKey;
                 data.voters.push(obj);
                 var obj2 = data.options.pop();
                 obj2[theKey] = obj2[theKey]+1;
@@ -90,9 +93,9 @@ router.post('/:poll*', (req, res)=>{
             }
             else{
                 if(data.voters[0][req.user.username] !== theKey){
-                    var previous = data.voters[0][req.user.username];
+                    var previous = data.voters[0][req.user.id];
                     var obj = data.voters.pop();
-                    obj[req.user.username] = theKey;
+                    obj[req.user.id] = theKey;
                     data.voters.push(obj);
                     var obj2 = data.options.pop();
                     obj2[theKey] = obj2[theKey]+1;
@@ -149,7 +152,7 @@ router.post('/', (req, res)=>{
         }
     }
 
-    User.findOne({username: req.user.username}, function(err, data) {
+    User.findOne({_id: req.user.id}, function(err, data) {
         if(!err) {
             data.polls.push(poll['title']);
             data.links.push(theLink);

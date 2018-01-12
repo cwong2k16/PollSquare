@@ -8,9 +8,18 @@ const authCheck = (req, res, next) => {
     }
 };
 router.get('/', authCheck, (req, res) => {
+    // console.log(req.user);
     // res.send('you are logged in, this is your profile - ' + req.user.username);
-    User.findOne({username: req.user.username}, function(err, data){
-        res.render('profile', {user: req.user, data: data});
+    User.findOne({_id: req.user.id}, function(err, data){
+        if(err){
+            throw err;
+        }
+        if(data){
+            res.render('profile', {user: req.user, data: data});
+        }
+        else{
+            res.send("Invalid request");
+        }
     });
 });
 module.exports = router;
