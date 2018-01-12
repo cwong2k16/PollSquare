@@ -12,11 +12,14 @@
     </body>
     <script>
         var ctx = document.getElementById("myChart");
+            var array = [];
+            var options = <%- JSON.stringify(options) %>;
+            var votes =<%- JSON.stringify(votes) %>;
             var chart = new Chart(ctx,{
                 "type":"pie",
                 "data":{
-                "labels":["Red","Blue","Yellow"],
-                "datasets":[{"label":"My First Dataset","data":[1,50,100],"backgroundColor":[random_rgb(),random_rgb(),random_rgb()]}]
+                "labels":options,
+                "datasets":[{"label":"My First Dataset","data":votes,"backgroundColor":[random_rgb(),random_rgb()]}]
                 }
             });
     </script>

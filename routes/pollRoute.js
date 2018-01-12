@@ -20,25 +20,48 @@ router.get('/', authCheck, (req, res) => {
     res.render('poll', {user: req.user});
 });
 
-router.get('/:poll*', (req, res)=>{
-    if(req.url === '/viewResults'){
-        res.render('viewResults');
-    }
-    else{
-        if(!req.user){
-            res.render('login', {user: req.user});
+router.get('/:poll*/viewResults', (req, res)=>{
+    // res.render('viewResults');
+    var originUrl = (req.url).slice(0, req.url.length - 12);
+    var url = '/poll' + originUrl;
+    Poll.findOne({link: url}, (err, data)=>{
+        if(err){
+            throw err;
+        }
+        if(!data){
+            res.send("Could not find in database");
         }
         else{
-            var url = '/poll' + req.url;
-            Poll.findOne({link: url}, (err, data)=>{
-                if(err){
-                    throw err;
-                }
-                else{
-                    res.render('pollPage', {data: data, user: req.user});
-                }
-            });
+            var array = [];
+            var options = [];
+            var votes = [];
+            for(var key in data.options[0]){
+                options.push(key);
+                votes.push(data.options[0][key]);
+            }
+            res.render('viewResults', {options: options, votes: votes});
         }
+    });
+});
+
+router.get('/:poll*', (req, res)=>{
+    if(!req.user){
+        res.render('login', {user: req.user});
+    }
+    else{
+        var url = '/poll' + req.url;
+        var viewResultsUrl = url + "/viewResults";
+        Poll.findOne({link: url}, (err, data)=>{
+            if(err){
+                throw err;
+            }
+            if(!data){
+                res.send("Could not find in database.");
+            }
+            else{
+                res.render('pollPage', {data: data, user: req.user, url: viewResultsUrl});
+            }
+        });
     }
 });
 

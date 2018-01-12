@@ -5,6 +5,7 @@
             Poll Page!
         </title>
         <link href = "/assets/style.css" rel = "stylesheet" text = "text/css"/>
+        <script src = "/assets/onClick.js"></script>
     </head>
     <body>
         <% include nav.ejs %>
@@ -21,7 +22,7 @@
             </table>
             <br/>
             <button class = "viewPoll" name = "submit" type = "submit"> Submit </button>
-            <input id = "viewPoll" type = "button" value = "View Poll"> </button>
+            <input onclick = "location.href='<%= url %>'" id = "viewPoll" type = "button" value = "View Poll"> </button>
         </form>
     </body>
 </html>
