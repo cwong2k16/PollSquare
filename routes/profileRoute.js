@@ -24,8 +24,47 @@ router.get('/', authCheck, (req, res) => {
     });
 });
 
-router.delete('/:item/:item2', (req, res)=>{
-    console.log(req.params.item);
+router.delete('/:name/:id', (req, res)=>{
+    var pollName = req.params.name;
+    var pollId = req.params.id;
+    var full = '/poll/' + pollName + '/' + pollId;
+
+    Poll.find({link: full.replace(/\-/g, " ")}).remove(function(err, data){
+        if(err){
+            throw err;
+        }
+    });
+
+    User.find({_id: req.user.id}, (err, data)=>{
+        if(err){
+            throw err;
+        }
+        if(data){
+            var links = data[0].links;
+            var names = data[0].polls;
+            var index = links.indexOf(full);
+
+            links[index] = null;
+            names[index] = null;
+            
+            var data = data.pop();
+
+            links = data.links.filter(function(word){
+                return (new Boolean(word) != false)
+            });
+            names = data.polls.filter(function(word){
+                return (new Boolean(word) != false)
+            });
+
+            data.links = links;
+            data.polls = names;
+
+            data.save();
+        }
+        else{
+            res.send("Invalid");
+        }
+    });
 });
 
 module.exports = router;
