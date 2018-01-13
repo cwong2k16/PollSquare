@@ -32,6 +32,10 @@ button, #mainPoll{
     padding-bottom: 10px;
 }
 
+.delete{
+    border-radius: 100%;
+}
+
 .viewPoll, #viewPoll{
     font-size: 13px;
     width: 12%;

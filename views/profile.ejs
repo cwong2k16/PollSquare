@@ -5,6 +5,11 @@
             Your Profile
         </title>
         <link href = "/assets/style.css" rel = "stylesheet" text = "text/css"/>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="/assets/deletion.js"></script>
     </head>
     <body>
         <% include nav.ejs %>
@@ -18,6 +23,7 @@
                     <a style = "color:black" href = <%= data.links[i] %>>
                         <%= data.polls[i] %>
                     </a>
+                    <input class = 'delete' name = <%= data.links[i] %> type = 'button' value = 'x'></input>
                 </p>
             <% } %>
         </div>

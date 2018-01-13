@@ -1,5 +1,6 @@
 const router = require('express').Router();
 var User = require('../models/user-model');
+var Poll = require('../models/poll-model');
 const authCheck = (req, res, next) => {
     if(!req.user){
         res.redirect('/auth/login');
@@ -22,4 +23,9 @@ router.get('/', authCheck, (req, res) => {
         }
     });
 });
+
+router.delete('/:item/:item2', (req, res)=>{
+    console.log(req.params.item);
+});
+
 module.exports = router;
