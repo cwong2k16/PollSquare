@@ -111,7 +111,13 @@ router.post('/:poll*', (req, res)=>{
         data.save(function(err){
             if(!err){
                 console.log('saved');
-                res.send("Your input has been submitted.");
+                var options = [];
+                var votes = [];
+                for(var key in data.options[0]){
+                    options.push(key);
+                    votes.push(data.options[0][key]);
+                }
+                res.render('viewResults', {options: options, votes: votes});
             }
             else{
                 console.log('error');
