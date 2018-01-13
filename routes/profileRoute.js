@@ -43,6 +43,7 @@ router.delete('/:name/:id', (req, res)=>{
             var links = data[0].links;
             var names = data[0].polls;
             var index = links.indexOf(full);
+            console.log(full);
 
             links[index] = null;
             names[index] = null;
@@ -59,7 +60,14 @@ router.delete('/:name/:id', (req, res)=>{
             data.links = links;
             data.polls = names;
 
-            data.save();
+            data.save(function(err){
+                if(err){
+                    throw err;
+                }
+                else{
+                    res.json(data);
+                }
+            });
         }
         else{
             res.send("Invalid");

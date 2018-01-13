@@ -3,12 +3,11 @@ $(document).ready(function(){
         var item = $(this).attr('name').replace(/ /g, "-");
         item = item.substring(5);
         $.ajax({
-        type: 'DELETE',
-        url: 'profile' + item,
-        success: function(data){
-            //do something with the data via front-end framework
+            type: 'DELETE',
+            url: 'profile' + item,
+            success: function(data){
             location.reload();
-        }
+            }
         });
     });
 });
