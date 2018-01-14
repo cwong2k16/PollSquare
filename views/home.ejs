@@ -17,11 +17,15 @@
                 <table align = "center">
                     <% for (var i = 0; i < data.length; i++) { %>
                         <tr align = "left">
-                            <td>                        
+                            <td align = "left">                        
                                 <a style = "color:blueviolet" href = <%=data[i].link%>>
                                     <%= data[i].title %> 
                                 </a>
+                            </td>
+                            <td align = "right">
+                                <td align = "left">
                                 submitted by <strong><%= data[i].owner %></strong>
+                                </td>
                             </td>
                         </tr>
                     <% } %>
