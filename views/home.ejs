@@ -14,14 +14,18 @@
         <div class = "center">
             <h3> Polls: </h3>
             <% if(user){ %>
-                <% for(var i = 0; i < data.length; i++){ %>
-                    <p>
-                        <a style = "color:blueviolet" href = <%=data[i].link%>>
-                            <%= data[i].title %> 
-                        </a>
-                        submitted by <%= data[i].owner %>
-                    </p>
-                <% } %>
+                <table align = "center">
+                    <% for (var i = 0; i < data.length; i++) { %>
+                        <tr align = "left">
+                            <td>                        
+                                <a style = "color:blueviolet" href = <%=data[i].link%>>
+                                    <%= data[i].title %> 
+                                </a>
+                                submitted by <%= data[i].owner %>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
             <% } %>
         </div>
     </body>

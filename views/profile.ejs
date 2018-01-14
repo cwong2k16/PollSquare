@@ -17,15 +17,19 @@
             Welcome to your profile, <%= user.username %>!
         </h1>
         <div class = 'center'>
-            Here is a collection of polls you've created:
-            <% for(var i = 0; i < data.polls.length; i++) { %>
-                <p> 
-                    <a style = "color:black" href = <%= data.links[i] %>>
-                        <%= data.polls[i] %>
-                    </a>
-                    <input class = 'delete' name = <%= data.links[i] %> type = 'button' value = 'x'></input>
-                </p>
-            <% } %>
+            <strong>Here is a collection of polls you've created:</strong>
+            <table align = "center">
+                    <% for (var i = 0; i < data.polls.length; i++) { %>
+                        <tr align = "right">
+                            <td>                        
+                                <a style = "color:black" href = <%= data.links[i] %>>
+                                    <%= data.polls[i] %>
+                                </a>
+                                <input class = 'delete' name = <%= data.links[i] %> type = 'button' value = 'x'></input>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
         </div>
     </body>
 </html>
