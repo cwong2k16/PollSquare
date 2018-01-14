@@ -21,10 +21,12 @@
             <table align = "center">
                     <% for (var i = 0; i < data.polls.length; i++) { %>
                         <tr align = "right">
-                            <td>                        
+                            <td align = "left">                        
                                 <a style = "color:black" href = <%= data.links[i] %>>
                                     <%= data.polls[i] %>
                                 </a>
+                            </td>
+                            <td align = "right">
                                 <input class = 'delete' name = <%= data.links[i] %> type = 'button' value = 'x'></input>
                             </td>
                         </tr>
