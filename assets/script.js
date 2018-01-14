@@ -8,7 +8,7 @@ function remove(arr, element){
 $(document).ready(function(){
     var split1 = "<div id = div";
     var split1b = "><input class = 'textbox' type = 'text' name = 'option";
-    var split2 = "' placeholder = 'Option...' /></input>";
+    var split2 = "' placeholder = 'Option...' / required></input>";
     var split3 = " <input type = 'button' id = 'option";
     var split4 = "' value = 'x'/></div>";
     var btnNum = 2;

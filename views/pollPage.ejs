@@ -15,7 +15,7 @@
             <table align = "center">
                 <% for (var key in data.options[0]) { %>
                     <tr align = "left">
-                        <td><input type="radio" name = 'opt' value = <%= key %>></td>
+                        <td><input type="radio" name = 'opt' value = <%= key.replace(/\s+/g,"_") %>></td>
                         <td><%=key%></td>
                     </tr>
                 <% } %>

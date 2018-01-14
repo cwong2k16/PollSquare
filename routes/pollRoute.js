@@ -76,9 +76,11 @@ router.post('/:poll*', (req, res)=>{
         }
         else{ 
             var theKey;
+            console.log(req.body);
             for(var key in req.body){
                 if(key === 'opt'){
-                    theKey = req.body[key];
+                    theKey = req.body[key].replace(/\_/g," ");
+                    console.log(theKey);
                 }
             }
             var voteCount;
@@ -114,8 +116,9 @@ router.post('/:poll*', (req, res)=>{
                 var options = [];
                 var votes = [];
                 for(var key in data.options[0]){
-                    options.push(key);
-                    votes.push(data.options[0][key]);
+                    var theKey = key.replace(/\_/g," ");
+                    options.push(theKey);
+                    votes.push(data.options[0][theKey]);
                 }
                 res.render('viewResults', {options: options, votes: votes});
             }
