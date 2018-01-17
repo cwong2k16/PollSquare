@@ -130,7 +130,7 @@ router.post('/:poll*', (req, res)=>{
 });
 
 router.post('/', (req, res)=>{
-    res.send("Your post has been submitted. :D");
+    res.redirect("profile");
     var poll = new Poll();
     var obj = {};
     var obj2 = {};
