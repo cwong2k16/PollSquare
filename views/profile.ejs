@@ -16,13 +16,16 @@
         <h1 class = 'center'>
             Welcome to your profile, <%= user.username %>!
         </h1>
+        <div style = "text-align:center">
+            <img height = "100px" width = "100px" style = "border-radius:100px" src = <%= user.avatar %>>
+        </div>
         <div class = 'center'>
             <strong>Here is a collection of polls you've created:</strong>
             <table align = "center">
                     <% for (var i = 0; i < data.polls.length; i++) { %>
                         <tr align = "right">
                             <td align = "left">                        
-                                <a style = "color:blueviolet" href = <%= data.links[i] %>>
+                                <a style = "color:blueviolet; font-size: 20px" href = <%= data.links[i] %>>
                                     <%= data.polls[i] %>
                                 </a>
                             </td>
